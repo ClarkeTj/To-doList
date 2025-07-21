@@ -19,8 +19,6 @@ function createListElement() {
 		var removeButton = document.createElement("button");
 		removeButton.classList.add("deleteButton");
 
-		// if the list item is clicked (li add event listener ) then 
-		// finished is true
 		if (finished) {
 			removeButton.appendChild(document.createTextNode("remove"));
 			removeButton.classList = "deleteButton";
