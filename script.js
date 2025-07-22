@@ -1,61 +1,55 @@
-var button = document.getElementById("enter");
-var input = document.getElementById("userinput");
-var ul = document.getElementById("lists");
+const button = document.getElementById("enter");
+const input = document.getElementById("userinput");
+const ul = document.getElementById("lists");
 
 function inputLength() {
-    return input.value.length;
+  return input.value.trim().length;
 }
 
 function createListElement() {
-	var li = document.createElement("li");
-	li.appendChild(document.createTextNode(input.value));
-	ul.appendChild(li);
+  const li = document.createElement("li");
+  li.textContent = input.value.trim();
+  ul.appendChild(li);
 
-	li.addEventListener("click", function() {
-		// creates a boolean that toggles the done class on li:
-		// if the list item is clicked this toggles the done class
-		var finished = this.classList.toggle("done");
-		// creates a remove button for the finished item:
-		var removeButton = document.createElement("button");
-		removeButton.classList.add("deleteButton");
+  // Add task complete/remove logic
+  li.addEventListener("click", function () {
+    const finished = this.classList.toggle("done");
 
-		if (finished) {
-			removeButton.appendChild(document.createTextNode("remove"));
-			removeButton.classList = "deleteButton";
-			li.appendChild(removeButton);
+    if (finished && !li.querySelector("button")) {
+      const removeButton = document.createElement("button");
+      removeButton.textContent = "remove";
+      removeButton.classList.add("deleteButton");
+      li.appendChild(removeButton);
 
-			removeButton.addEventListener("click", function() {
-				this.parentElement.remove();
-			});
-		} else {
-			var deleteBtn = this.getElementsByClassName("deleteButton")[0];
-			if (deleteBtn) {
-				deleteBtn.remove();
-			}
-		}
-	});
-	// revert input value back to nothing
-	input.value = "";
-}
-
-
-function addListAfterClick() {    
-     if (inputLength > 0){
-        createListElement();
+      removeButton.addEventListener("click", function (e) {
+        e.stopPropagation(); // prevent triggering parent click
+        li.classList.add("fade-out");
+        setTimeout(() => li.remove(), 300);
+      });
+    } else {
+      const btn = li.querySelector(".deleteButton");
+      if (btn) btn.remove();
     }
+  });
+
+  // Visual pop animation on add
+  li.style.animation = "pop 0.2s ease-out";
+
+  // Clear input
+  input.value = "";
 }
 
-function addListAfterKeypress(event) {
-    if (inputLength() > 0 && event.keyCode === 13) {  
-        createListElement();
-    }}
+function addListAfterClick() {
+  if (inputLength() > 0) {
+    createListElement();
+  }
+}
 
+function addListAfterKeydown(e) {
+  if (inputLength() > 0 && (e.key === "Enter" || e.keyCode === 13)) {
+    createListElement();
+  }
+}
 
-button.addEventListener("click",addListAfterClick);
-
-input.addEventListener("keypress", addListAfterKeypress);
-
-// This code adds an event listener to the button and input field.
-// When the button is clicked or the Enter key is pressed, it checks if there is input and creates a new list item.
-// The new list item is appended to the unordered list with the id "lists". 
-
+button.addEventListener("click", addListAfterClick);
+input.addEventListener("keydown", addListAfterKeydown);
