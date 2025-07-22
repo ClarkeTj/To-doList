@@ -1,46 +1,105 @@
- *{
-    margin: 0; 
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-} 
-
-h4{
-    margin: 10px;
-    color: darkorange;
-    font-weight: bold;
-    
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#enter{
-    border: 2px solid black;
-    border-radius: 5px;
-    background-color: orange;
-    width: 4rem;
-    height: 2rem;
+body {
+  background-color: #f9f9f9;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
 }
 
-#userinput{
-    border: 1px solid black;
-    border-radius: 5px;
-    height: 2rem;
-    margin: 10px;
-    padding: 5px;
+.container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
 }
 
-#lists{
-    
-     margin: 40px; 
+h4 {
+  font-size: 24px;
+  color: darkorange;
+  margin-bottom: 5px;
 }
 
-.done{
-    text-decoration: line-through;
-    color: red;
+.subtitle {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+#userinput {
+  padding: 10px;
+  width: 70%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+#enter {
+  padding: 10px 15px;
+  background-color: orange;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#enter:hover {
+  background-color: darkorange;
+}
+
+.hint {
+  font-size: 13px;
+  color: #555;
+  margin-top: 10px;
+  opacity: 0.6;
+}
+
+#lists {
+  margin-top: 30px;
+  list-style: none;
+  padding: 0;
+}
+
+#lists li {
+  background: #fffbe6;
+  margin: 10px 0;
+  padding: 10px 15px;
+  border-radius: 6px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+#lists li:hover {
+  background-color: #fff2cc;
+}
+
+.done {
+  text-decoration: line-through;
+  color: red;
+  background-color: #ffe0e0 !important;
 }
 
 .deleteButton {
-  background-color: orange;
-  color: black;
-  border-radius: 30px;
-  margin: 20px;
+  background-color: crimson;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
